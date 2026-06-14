@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+
+{% block title %}
+CareerPilot AI Assistant
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+            <div class="card shadow-lg border-0">
+
+                <!-- HEADER -->
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">🤖 CareerPilot AI Assistant</h4>
+                    <small>
+                        Career Guidance • Roadmaps • Certifications • Jobs • Interview Prep
+                    </small>
+                </div>
+
+                <!-- CHAT BOX -->
+                <div id="chat-box"
+                     class="card-body bg-light"
+                     style="height:600px; overflow-y:auto;">
+
+                    <!-- WELCOME MESSAGE -->
+                    <div class="ai-message">
+                        <div class="message-card">
+                            <strong>CareerPilot AI</strong>
+                            <p class="mb-0 mt-2">
+                                👋 Welcome! Ask me anything about careers, roadmaps, or interviews.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- INPUT AREA -->
+                <div class="card-footer bg-white">
+                    <div class="input-group">
+
+                        <input type="text"
+                               id="message"
+                               class="form-control"
+                               placeholder="Ask your career question..."
+                               onkeypress="handleEnter(event)">
+
+                        <button class="btn btn-primary"
+                                onclick="sendMessage()">
+                            Send
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Markdown -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<style>
+
+.user-message {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+.ai-message {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 12px;
+}
+
+.message-card {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.user-message .message-card {
+    background: #0d6efd;
+    color: white;
+}
+
+.typing {
+    font-style: italic;
+    color: #666;
+}
+
+pre {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+code {
+    color: #d63384;
+}
+
+</style>
+
+<script>
+
+let isSending = false;
+
+/* =========================
+   SAFE ESCAPE
+========================= */
+function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.innerText = text;
+    return div.innerHTML;
+}
+
+/* =========================
+   ENTER KEY HANDLER
+========================= */
+function handleEnter(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();
+    }
+}
+
+/* =========================
+   ADD MESSAGE
+========================= */
+function addMessage(role, content) {
+
+    const chatBox = document.getElementById("chat-box");
+
+    const wrapper = document.createElement("div");
+    wrapper.className = role === "user" ? "user-message" : "ai-message";
+
+    const card = document.createElement("div");
+    card.className = "message-card";
+
+    if (role === "user") {
+        card.innerHTML = `
+            <strong>You</strong>
+            <div>${escapeHtml(content)}</div>
+        `;
+    } else {
+        card.innerHTML = `
+            <strong>CareerPilot AI</strong>
+            <div class="mt-2">${content}</div>
+        `;
+    }
+
+    wrapper.appendChild(card);
+    chatBox.appendChild(wrapper);
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+/* =========================
+   TYPING INDICATOR
+========================= */
+function showTyping() {
+
+    if (document.getElementById("typing-indicator")) return;
+
+    const chatBox = document.getElementById("chat-box");
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "ai-message";
+    wrapper.id = "typing-indicator";
+
+    const card = document.createElement("div");
+    card.className = "message-card typing";
+    card.innerText = "CareerPilot AI is thinking...";
+
+    wrapper.appendChild(card);
+    chatBox.appendChild(wrapper);
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+/* =========================
+   REMOVE TYPING
+========================= */
+function removeTyping() {
+    const el = document.getElementById("typing-indicator");
+    if (el) el.remove();
+}
+
+/* =========================
+   SEND MESSAGE
+========================= */
+async function sendMessage() {
+
+    if (isSending) return;
+
+    const input = document.getElementById("message");
+    const message = input.value.trim();
+
+    if (!message) return;
+
+    isSending = true;
+    input.disabled = true;
+
+    addMessage("user", message);
+
+    input.value = "";
+
+    showTyping();
+
+    try {
+
+        const response = await fetch("/chatbot/ask", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ message })
+        });
+
+        if (!response.ok) {
+            throw new Error("HTTP Error " + response.status);
+        }
+
+        const data = await response.json();
+
+        removeTyping();
+
+        addMessage(
+            "ai",
+            marked.parse(data.response || "No response received.")
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        removeTyping();
+
+        addMessage(
+            "ai",
+            `<span style="color:red;">❌ Unable to connect to server.</span>`
+        );
+    }
+
+    input.disabled = false;
+    input.focus();
+    isSending = false;
+}
+
+</script>
+
+{% endblock %}

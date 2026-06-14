@@ -1,0 +1,371 @@
+{% extends 'base.html' %}
+
+{% block title %}
+CareerPilot AI Dashboard
+{% endblock %}
+
+{% block extra_css %}
+
+<style>
+
+body{
+    background:#f4f6f9;
+}
+
+.dashboard-wrapper{
+    display:flex;
+    min-height:100vh;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:260px;
+    background:#111827;
+    color:white;
+    padding:25px;
+    position:fixed;
+    height:100vh;
+    overflow-y:auto;
+}
+
+.sidebar-brand{
+    font-size:1.6rem;
+    font-weight:700;
+    margin-bottom:30px;
+}
+
+.sidebar-link{
+    display:block;
+    color:#d1d5db;
+    text-decoration:none;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:8px;
+    transition:.3s;
+}
+
+.sidebar-link:hover{
+    background:#1f2937;
+    color:white;
+}
+
+/* Main Content */
+
+.dashboard-content{
+    margin-left:260px;
+    flex:1;
+    padding:30px;
+}
+
+/* Cards */
+
+.section-card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.score-card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.score-value{
+    font-size:2.3rem;
+    font-weight:700;
+    color:#2563eb;
+}
+
+/* Badges */
+
+.skill-badge{
+    display:inline-block;
+    padding:8px 15px;
+    margin:5px;
+    border-radius:50px;
+    font-weight:600;
+}
+
+.skill{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+.gap{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-wrapper">
+
+```
+<!-- Sidebar -->
+<div class="sidebar">
+
+    <div class="sidebar-brand">
+        🚀 CareerPilot AI
+    </div>
+
+    <a href="#overview" class="sidebar-link">📊 Dashboard</a>
+    <a href="#skills" class="sidebar-link">💻 Skills</a>
+    <a href="#gaps" class="sidebar-link">📉 Skill Gaps</a>
+    <a href="#career" class="sidebar-link">🎯 Careers</a>
+    <a href="#roadmap" class="sidebar-link">🛣 Roadmap</a>
+    <a href="#certifications" class="sidebar-link">🏆 Certifications</a>
+    <a href="#projects" class="sidebar-link">💼 Projects</a>
+    <a href="#interview" class="sidebar-link">🎤 Interview Prep</a>
+
+    <hr>
+
+    <a href="{{ url_for('upload') }}" class="sidebar-link">
+        📄 Upload Resume
+    </a>
+
+    <a href="{{ url_for('logout') }}" class="sidebar-link">
+        🚪 Logout
+    </a>
+
+</div>
+
+<!-- Main Content -->
+<div class="dashboard-content">
+
+    <!-- Overview -->
+    <section id="overview" class="section-card">
+
+        <h2>Welcome, {{ username }}</h2>
+
+        <p class="text-muted">
+            AI Powered Career Guidance Dashboard
+        </p>
+
+    </section>
+
+    <!-- Scores -->
+    <div class="row mb-4">
+
+        <div class="col-md-4">
+
+            <div class="score-card">
+
+                <h6>ATS SCORE</h6>
+
+                <div class="score-value">
+                    {{ result.ats_score }}%
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="score-card">
+
+                <h6>JOB READINESS</h6>
+
+                <div class="score-value">
+                    {{ result.job_readiness }}%
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="score-card">
+
+                <h6>PROJECTS</h6>
+
+                <div class="score-value">
+                    {{ result.projects|length }}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Skills -->
+    <section id="skills" class="section-card">
+
+        <h3>Skills Found</h3>
+
+        {% for skill in result.skills %}
+            <span class="skill-badge skill">
+                {{ skill }}
+            </span>
+        {% endfor %}
+
+    </section>
+
+    <!-- Skill Gaps -->
+    <section id="gaps" class="section-card">
+
+        <h3>Skill Gaps</h3>
+
+        {% for gap in result.gaps %}
+            <span class="skill-badge gap">
+                {{ gap }}
+            </span>
+        {% endfor %}
+
+    </section>
+
+    <!-- Careers -->
+    <section id="career" class="section-card">
+
+        <h3>Career Recommendations</h3>
+
+        <div class="row">
+
+            {% for item in result.career %}
+
+            <div class="col-md-4 mb-3">
+
+                <div class="card">
+
+                    <div class="card-body">
+
+                        <h5>{{ item }}</h5>
+
+                        <p>
+                            Recommended based on your profile.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap" class="section-card">
+
+        <h3>Learning Roadmap</h3>
+
+        {% for topic in result.roadmap %}
+
+        <div class="border rounded p-3 mb-3">
+
+            <h5>{{ topic.topic }}</h5>
+
+            <a href="{{ topic.youtube }}"
+               target="_blank"
+               class="btn btn-danger btn-sm">
+
+                Watch Playlist
+
+            </a>
+
+            <a href="{{ topic.notes }}"
+               target="_blank"
+               class="btn btn-primary btn-sm">
+
+                Notes
+
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications" class="section-card">
+
+        <h3>Recommended Certifications</h3>
+
+        <ul class="list-group">
+
+            {% for cert in result.certifications %}
+
+            <li class="list-group-item">
+                {{ cert }}
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section-card">
+
+        <h3>Project Recommendations</h3>
+
+        <ul class="list-group">
+
+            {% for project in result.projects %}
+
+            <li class="list-group-item">
+                {{ project }}
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+    </section>
+
+    <!-- Interview -->
+    <section id="interview" class="section-card">
+
+        <h3>Technical Interview Questions</h3>
+
+        <ul class="list-group mb-4">
+
+            {% for q in result.technical_questions %}
+
+            <li class="list-group-item">
+                {{ q }}
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        <h3>HR Interview Questions</h3>
+
+        <ul class="list-group">
+
+            {% for q in result.hr_questions %}
+
+            <li class="list-group-item">
+                {{ q }}
+            </li>
+
+            {% endfor %}
+
+        </ul>
+{% endblock %}
+    </section>
+
+</div>
+</div>

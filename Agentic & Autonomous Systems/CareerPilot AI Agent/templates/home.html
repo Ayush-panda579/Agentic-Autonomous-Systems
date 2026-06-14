@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+
+{% block title %}
+CareerPilot AI | Smart Career Guidance
+{% endblock %}
+
+{% block extra_css %}
+
+.hero-section{
+    padding:120px 0 100px;
+    background:linear-gradient(
+        135deg,
+        #f8fbff,
+        #eef4ff
+    );
+}
+
+.hero-title{
+    font-size:4.5rem;
+    font-weight:900;
+    line-height:1.1;
+}
+
+.hero-title span{
+    background:linear-gradient(
+        90deg,
+        #2563eb,
+        #7c3aed
+    );
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero-text{
+    font-size:1.2rem;
+    color:#6b7280;
+    max-width:750px;
+    margin:auto;
+}
+
+.hero-badge{
+    display:inline-block;
+    background:#dbeafe;
+    color:#2563eb;
+    padding:10px 20px;
+    border-radius:999px;
+    font-weight:600;
+    margin-bottom:25px;
+}
+
+.hero-img{
+    max-width:100%;
+}
+
+.feature-card{
+    border:none;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+    transition:.3s;
+    height:100%;
+}
+
+.feature-card:hover{
+    transform:translateY(-5px);
+}
+
+.feature-icon{
+    width:70px;
+    height:70px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:30px;
+    margin-bottom:20px;
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+    );
+}
+
+.feature-section{
+    padding:100px 0;
+}
+
+.timeline-section{
+    background:#f8fafc;
+    padding:100px 0;
+}
+
+.timeline-card{
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+    margin-bottom:25px;
+}
+
+.stats-card{
+    text-align:center;
+    padding:30px;
+    border-radius:20px;
+    background:white;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.stats-number{
+    font-size:2.5rem;
+    font-weight:800;
+    color:#2563eb;
+}
+
+.cta-section{
+    padding:100px 0;
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+    );
+    color:white;
+}
+
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+
+<section class="hero-section">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+
+                <div class="hero-badge">
+                    🚀 AI-Powered Career Intelligence
+                </div>
+
+                <h1 class="hero-title">
+                    Your Career,
+                    <span>Decoded.</span>
+                </h1>
+
+                <p class="hero-text mt-4">
+
+                    Upload your resume and receive AI-powered
+                    skill extraction, ATS scoring, career matching,
+                    project recommendations, certifications,
+                    interview preparation, and personalized roadmaps.
+
+                </p>
+
+                <div class="mt-5">
+
+                    <a href="/register"
+                       class="btn btn-gradient btn-lg me-3">
+
+                        Get Started
+
+                    </a>
+
+                    <a href="{{ url_for('chatbot') }}"
+                        class="btn btn-dark btn-lg">
+                            🤖 Try AI Assistant
+                        </a>
+
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 text-center">
+
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                     class="hero-img"
+                     alt="Career AI">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STATS -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-md-3">
+
+                <div class="stats-card">
+
+                    <div class="stats-number">
+                        5000+
+                    </div>
+
+                    <h6>Students Guided</h6>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="stats-card">
+
+                    <div class="stats-number">
+                        120+
+                    </div>
+
+                    <h6>Career Paths</h6>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="stats-card">
+
+                    <div class="stats-number">
+                        300+
+                    </div>
+
+                    <h6>Projects</h6>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="stats-card">
+
+                    <div class="stats-number">
+                        50+
+                    </div>
+
+                    <h6>Certifications</h6>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}
