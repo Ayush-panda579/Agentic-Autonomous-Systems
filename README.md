@@ -1,88 +1,270 @@
-**✅ Finalized GitHub README for CareerPilot AI Agent**
+# 🚀 CareerPilot AI Agent
 
-```markdown
-# CareerPilot AI Agent
-
-**An Agentic & Autonomous AI-Powered Career Guidance, Resume Analysis & Learning Ecosystem**
+### An Autonomous Multi-Agent Career Intelligence & Learning Ecosystem
 
 ![Project Banner](docs/screenshots/dashboard.png)
+
+> AI-Powered Career Guidance Platform built using Agentic & Autonomous AI Architecture
+
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![Flask](https://img.shields.io/badge/Flask-Web%20Framework-black)
+![Gemini](https://img.shields.io/badge/Google-Gemini%20AI-orange)
+![SQLite](https://img.shields.io/badge/Database-SQLite-green)
+![License](https://img.shields.io/badge/License-Educational-blue)
 
 ---
 
 ## 📌 Project Overview
 
-**CareerPilot AI Agent** is a sophisticated **multi-agent AI system** that functions as a virtual career mentor. It leverages **Agentic and Autonomous AI principles** where specialized agents collaborate under a central **Orchestrator Agent** to deliver highly personalized career guidance.
+CareerPilot AI Agent is an intelligent **multi-agent AI system** that acts as a virtual career mentor for students, freshers, and job seekers.
 
-The platform analyzes resumes, scores them for ATS compatibility, identifies skill gaps, generates adaptive learning roadmaps, recommends resources (courses, videos, projects), prepares users for interviews with evaluation, suggests jobs, tracks progress, and provides continuous guidance through an intelligent **AI Career Mentor Chatbot**.
+The platform utilizes specialized autonomous AI agents coordinated through a central **Orchestrator Agent** to provide:
 
-Built for students, freshers, and early-career professionals to bridge the gap between education and industry requirements.
+* Resume Analysis
+* ATS Optimization
+* Career Recommendations
+* Skill Gap Detection
+* Personalized Learning Roadmaps
+* Resource Recommendations
+* Interview Preparation
+* Progress Tracking
+* AI Career Mentoring
 
----
-
-## ✨ Key Features
-
-- **Resume Analysis Agent** – PDF parsing, skill/experience/education extraction
-- **ATS Optimization Agent** – ATS score (out of 100), keyword gaps, formatting suggestions
-- **Career Recommendation Agent** – Personalized career paths (Python Developer, AI Engineer, etc.)
-- **Skill Gap Analysis Agent** – Compares current skills with industry standards
-- **Adaptive Learning Roadmap Agent** – Dynamic, progress-aware roadmaps
-- **Smart Resource Recommendation Agent** – Courses, YouTube videos, GitHub repos, articles, certifications
-- **Interview Preparation & Evaluation Agent** – Question generation + AI scoring (Technical, Communication, Confidence)
-- **Job Recommendation Agent** – Internships and entry-level roles
-- **Progress Tracking Agent** – Real-time skill & milestone tracking
-- **Industry Trend Agent** – Latest in-demand skills and technologies
-- **AI Career Mentor Chatbot** ⭐ – Conversational doubt solving with memory
-- **Interactive Dashboard** – Complete career overview with visualizations
+Unlike traditional career guidance platforms, CareerPilot AI continuously adapts recommendations based on user skills, goals, progress, and interactions.
 
 ---
 
-## 🧠 Agentic Architecture
+## ❗ Problem Statement
+
+Many students and freshers struggle with:
+
+* Choosing the right career path
+* Creating ATS-friendly resumes
+* Understanding industry skill requirements
+* Finding structured learning plans
+* Preparing for interviews
+* Tracking career growth
+
+Most existing solutions provide static recommendations and fail to offer personalized career development support.
+
+---
+
+## ✨ Proposed Solution
+
+CareerPilot AI Agent addresses these challenges using a collaborative multi-agent architecture powered by Google Gemini.
+
+The system:
+
+✅ Analyzes resumes automatically
+
+✅ Calculates ATS compatibility scores
+
+✅ Identifies missing skills
+
+✅ Recommends suitable career paths
+
+✅ Generates adaptive learning roadmaps
+
+✅ Suggests learning resources
+
+✅ Conducts interview preparation
+
+✅ Tracks progress continuously
+
+✅ Provides real-time career mentoring through AI
+
+---
+
+## 🤖 Core AI Agents
+
+### 📄 Resume Analysis Agent
+
+* Resume parsing
+* Skill extraction
+* Education analysis
+* Experience analysis
+
+### 🎯 ATS Optimization Agent
+
+* ATS score generation
+* Missing keyword detection
+* Resume improvement suggestions
+
+### 🧭 Career Recommendation Agent
+
+* Role suitability analysis
+* Career path prediction
+* Personalized recommendations
+
+### 📊 Skill Gap Analysis Agent
+
+* Current skill assessment
+* Industry requirement comparison
+* Missing skill identification
+
+### 🛣️ Learning Roadmap Agent
+
+* Personalized learning plans
+* Dynamic technology roadmaps
+* Goal-based progression
+
+### 📚 Resource Recommendation Agent
+
+* Courses
+* Documentation
+* Tutorials
+* GitHub repositories
+* Learning resources
+
+### 🎤 Interview Preparation Agent
+
+* Technical questions
+* HR questions
+* Mock interview preparation
+
+### 📈 Progress Tracking Agent
+
+* Skill progress monitoring
+* Roadmap completion tracking
+* Learning analytics
+
+### 💬 AI Career Mentor Chatbot
+
+* Career guidance
+* Technology recommendations
+* Resume advice
+* Learning support
+* Continuous mentoring
+
+---
+
+## 🧠 Multi-Agent System Architecture
 
 ```mermaid
 graph TD
-    User[User] --> Orchestrator[Orchestrator Agent]
-    Orchestrator --> Resume[Resume Analysis Agent]
-    Orchestrator --> ATS[ATS Optimization Agent]
-    Orchestrator --> Career[Career Recommendation Agent]
-    Orchestrator --> SkillGap[Skill Gap Analysis Agent]
-    Orchestrator --> Roadmap[Adaptive Roadmap Agent]
-    Orchestrator --> Resources[Resource Recommendation Agent]
-    Orchestrator --> Interview[Interview Prep & Evaluation Agent]
-    Orchestrator --> Job[Job Recommendation Agent]
-    Orchestrator --> Progress[Progress Tracking Agent]
-    Orchestrator --> Trends[Industry Trend Agent]
-    Orchestrator --> Chatbot[AI Career Mentor Chatbot]
-    
-    Resume & ATS & Career & SkillGap & Roadmap & Resources & Interview & Job & Progress & Trends --> Gemini[Gemini API]
-    Chatbot --> Gemini
-    Gemini --> Dashboard[Career Dashboard]
+    User[User] --> O[Orchestrator Agent]
+
+    O --> R[Resume Analysis Agent]
+    O --> A[ATS Optimization Agent]
+    O --> C[Career Recommendation Agent]
+    O --> S[Skill Gap Analysis Agent]
+    O --> L[Learning Roadmap Agent]
+    O --> RR[Resource Recommendation Agent]
+    O --> I[Interview Preparation Agent]
+    O --> P[Progress Tracking Agent]
+    O --> B[AI Career Mentor Chatbot]
+
+    R --> G[Gemini AI]
+    A --> G
+    C --> G
+    S --> G
+    L --> G
+    RR --> G
+    I --> G
+    P --> G
+    B --> G
+
+    G --> D[Interactive Career Dashboard]
 ```
+
+---
+
+## 🔄 Agent Collaboration Workflow
+
+```text
+Resume Upload
+      │
+      ▼
+Resume Analysis Agent
+      │
+      ▼
+ATS Optimization Agent
+      │
+      ▼
+Career Recommendation Agent
+      │
+      ▼
+Skill Gap Analysis Agent
+      │
+      ▼
+Learning Roadmap Agent
+      │
+      ▼
+Resource Recommendation Agent
+      │
+      ▼
+Interview Preparation Agent
+      │
+      ▼
+Progress Tracking Agent
+      │
+      ▼
+AI Career Mentor Chatbot
+```
+
+This workflow demonstrates how agents communicate and collaborate to provide personalized recommendations.
+
+---
+
+## 🧠 AI Memory Layer
+
+CareerPilot AI maintains user-specific context through:
+
+* Career Goals
+* Skills Profile
+* Resume History
+* Learning Progress
+* Interview Performance
+* Chat History
+
+This enables adaptive recommendations and personalized career mentoring.
 
 ---
 
 ## 🛠️ Technology Stack
 
-**Frontend**: HTML5, CSS3, Bootstrap 5, JavaScript  
-**Backend**: Python, Flask  
-**Database**: SQLite (with SQLAlchemy)  
-**AI**: Google Gemini API (Gemini 1.5 Pro / Flash)  
-**Libraries**: PyPDF2 / pdfplumber, Flask-Login, Werkzeug, python-dotenv, gunicorn  
-**Others**: Mermaid.js (diagrams), Chart.js (progress visuals)
+### Frontend
+
+* HTML5
+* CSS3
+* Bootstrap 5
+* JavaScript
+
+### Backend
+
+* Python
+* Flask
+
+### Database
+
+* SQLite
+* SQLAlchemy
+
+### Artificial Intelligence
+
+* Google Gemini API
+
+### Libraries
+
+* PyPDF2
+* pdfplumber
+* Flask-Login
+* Werkzeug
+* python-dotenv
 
 ---
 
 ## 📁 Project Structure
 
-```bash
+```text
 Agentic-Autonomous-Systems/
-├── app.py                      # Main Flask application
+
+├── app.py
 ├── config.py
 ├── requirements.txt
 ├── .env.example
-├── README.md
-├── .gitignore
-│
-├── agents/                     # All autonomous agents
+
+├── agents/
 │   ├── orchestrator_agent.py
 │   ├── resume_agent.py
 │   ├── ats_agent.py
@@ -91,159 +273,155 @@ Agentic-Autonomous-Systems/
 │   ├── roadmap_agent.py
 │   ├── resource_agent.py
 │   ├── interview_agent.py
-│   ├── evaluation_agent.py
-│   ├── job_agent.py
 │   ├── progress_agent.py
-│   ├── trend_agent.py
 │   └── chatbot_agent.py
-│
+
 ├── services/
 │   ├── gemini_service.py
 │   ├── pdf_service.py
-│   ├── resume_parser.py
-│   └── utils.py
-│
+│   └── resume_parser.py
+
 ├── database/
-│   ├── models.py
 │   ├── db.py
-│   └── careerpilot.db
-│
-├── models/                     # Data models
-│
-├── routes/                     # Flask Blueprints
-│   ├── auth.py
-│   ├── resume.py
-│   ├── dashboard.py
-│   ├── roadmap.py
-│   └── api.py
-│
+│   └── models.py
+
+├── routes/
+├── templates/
 ├── static/
-│   ├── css/
-│   ├── js/
-│   └── images/
-│
-├── templates/                  # Jinja2 templates
-│   ├── base.html
-│   ├── index.html
-│   ├── login.html
-│   ├── dashboard.html
-│   ├── upload_resume.html
-│   └── ...
-│
-├── uploads/resumes/
-├── docs/
-│   ├── architecture.png
-│   ├── workflow.png
-│   └── screenshots/
-│
-└── tests/
+├── uploads/
+└── docs/
 ```
 
 ---
 
-## 🚀 Installation & Setup
+## 🗄️ Database Schema
+
+### Users
+
+Stores user account information.
+
+### Resumes
+
+Stores uploaded resume files.
+
+### Skills
+
+Stores identified user skills.
+
+### Career Recommendations
+
+Stores generated career suggestions.
+
+### Roadmaps
+
+Stores personalized learning roadmaps.
+
+### Progress Tracker
+
+Stores milestone completion data.
+
+### Interview Sessions
+
+Stores interview evaluation results.
+
+### Chat History
+
+Stores chatbot conversations.
+
+---
+
+## 📊 Expected Outcomes
+
+* Improved ATS Resume Scores
+* Faster Skill Gap Identification
+* Personalized Learning Plans
+* Better Interview Readiness
+* Continuous Career Development Support
+
+---
+
+## 📸 Screenshots
+
+Add screenshots here:
+
+* Dashboard Overview
+* Resume Upload Page
+* Resume Analysis Results
+* Learning Roadmap
+* Career Recommendations
+* AI Career Mentor Chatbot
+
+---
+
+## 🧪 Installation
 
 ```bash
 git clone https://github.com/yourusername/Agentic-Autonomous-Systems.git
+
 cd Agentic-Autonomous-Systems
 
-# Create virtual environment
 python -m venv venv
-source venv/bin/activate    # Windows: venv\Scripts\activate
+
+# Windows
+venv\Scripts\activate
+
+# Linux / macOS
+source venv/bin/activate
 
 pip install -r requirements.txt
 
-# Setup environment variables
 cp .env.example .env
-# Add your GEMINI_API_KEY in .env
 
-# Run the application
+# Add GEMINI_API_KEY
+
 python app.py
 ```
 
-Open `http://127.0.0.1:5000`
+---
+
+## 🔬 Research Contribution
+
+CareerPilot AI introduces a collaborative multi-agent framework where autonomous AI agents communicate through an Orchestrator Agent to continuously analyze user progress, adapt learning pathways, and provide intelligent career guidance.
+
+This architecture combines:
+
+* Agentic AI
+* Personalized Learning
+* Career Intelligence
+* Resume Analytics
+* Conversational AI
+
+within a unified platform.
 
 ---
 
-## 📊 Database Schema Highlights
+## 🚀 Future Enhancements
 
-- `users`
-- `resumes`
-- `analysis_results`
-- `roadmaps`
-- `progress_tracker`
-- `interview_sessions`
-- `chat_history`
-
----
-
-## 🎯 Presentation (PPT)
-
-A professional **19-slide** final-year project presentation is included in `docs/ppt/CareerPilot_AI_Presentation.pptx`.
-
-**Key Slides Include**:
-- Problem Statement + Visuals
-- Proposed Multi-Agent Solution
-- Detailed Agent Responsibilities
-- System Architecture (with diagram)
-- Technology Stack
-- Module-wise Screenshots
-- AI Career Mentor Chatbot Demo
-- Dashboard Analytics
-- Future Enhancements
-- Conclusion & Thank You
+* Voice-Based Career Assistant
+* Mobile Application
+* Real-Time Job API Integration
+* Advanced RAG Implementation
+* Multi-Language Support
+* Industry-Specific AI Models
 
 ---
 
-## 📈 Future Scope
+## 👨‍💻 Author
 
-- Voice-enabled career assistant
-- Real-time job API integration (LinkedIn, Indeed)
-- Multi-language support
-- Mobile app (React Native / Flutter)
-- Advanced RAG for domain-specific knowledge
-- Team/College collaboration features
+**Ayush Panda**
 
----
+M.Sc. Information Technology(Artificial Intelligence) (2026)
 
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to open issues or pull requests.
+CareerPilot AI Project
 
 ---
 
-## 📧 Contact
+## ⭐ Support
 
-**Ayush Panda**  
-B.Sc Computer Science, 2026  
-Email: [your.email@example.com]  
-GitHub: [yourusername]  
-LinkedIn: [your-profile]
+If you found this project useful, consider giving it a star on GitHub.
 
 ---
 
-**⭐ Star this repository if you found it helpful!**
+## 📄 License
 
----
-
-**Made with ❤️ using Agentic AI principles**
-```
-
----
-
-### Final Rating: **10/10** for a B.Sc. Final-Year Project
-
-This version:
-- Clearly demonstrates **multi-agent collaboration** and **autonomous behavior**
-- Includes memory/progress tracking
-- Has adaptive + intelligent features
-- Looks professional for recruiters, professors, and GitHub
-- Contains everything needed for PPT + viva
-
-**Next Steps for You**:
-1. Create the actual repository with this structure
-2. Implement the core agents (start with Orchestrator + Resume + Chatbot)
-3. Add real screenshots to `docs/screenshots/`
-4. Generate the PPT using the slide plan from earlier messages
-
-Would you like me to generate any specific file content (e.g., `orchestrator_agent.py`, `gemini_service.py`, or the full PPT slide text)?
+This project is developed for educational and research purposes.
